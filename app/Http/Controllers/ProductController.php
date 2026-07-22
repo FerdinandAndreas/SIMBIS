@@ -43,13 +43,18 @@ class ProductController extends Controller
 
     public function edit(Product $produk)
     {
-        $this->authorize('update', $produk);
+        if ((int) $produk->user_id !== (int) Auth::id()) {
+            return redirect()->route('produk.index')->with('error', 'Anda tidak memiliki akses ke produk ini.');
+        }
+
         return view('produk.edit', compact('produk'));
     }
 
     public function update(Request $request, Product $produk)
     {
-        $this->authorize('update', $produk);
+        if ((int) $produk->user_id !== (int) Auth::id()) {
+            return redirect()->route('produk.index')->with('error', 'Anda tidak memiliki akses ke produk ini.');
+        }
 
         $validated = $request->validate([
             'nama'       => 'required|string|max:255',
@@ -68,7 +73,10 @@ class ProductController extends Controller
 
     public function destroy(Product $produk)
     {
-        $this->authorize('delete', $produk);
+        if ((int) $produk->user_id !== (int) Auth::id()) {
+            return redirect()->route('produk.index')->with('error', 'Anda tidak memiliki akses ke produk ini.');
+        }
+
         $produk->delete();
 
         return redirect()->route('produk.index')

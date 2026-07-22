@@ -6,6 +6,12 @@
             </div>
         @endif
 
+        @if(session('error'))
+            <div class="alert alert-danger small p-2 mb-3">
+                <i class="bi bi-exclamation-triangle me-1"></i> {{ session('error') }}
+            </div>
+        @endif
+
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h2 class="fs-6 fw-bold text-dark mb-0">Daftar Barang / Produk</h2>
             <a href="{{ route('produk.create') }}" class="btn btn-primary btn-sm rounded-3 px-3 fw-bold">
