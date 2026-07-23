@@ -15,6 +15,7 @@
             padding: 2.5rem;
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: #0c3378;
+            box-sizing: border-box;
         }
 
         .nota-title {
@@ -52,18 +53,22 @@
             width: 140px;
             color: #0c3378;
             font-weight: 600;
+            flex-shrink: 0;
         }
 
         .meta-colon {
             width: 20px;
             color: #0c3378;
             font-weight: 700;
+            flex-shrink: 0;
         }
 
         .meta-value {
             flex-grow: 1;
             color: #1e293b;
             font-weight: 500;
+            word-break: break-all;
+            overflow-wrap: anywhere;
         }
 
         .nota-table {
@@ -71,11 +76,12 @@
             border-collapse: collapse;
             margin-bottom: 2rem;
             border: 1px solid #0c3378;
+            table-layout: fixed;
         }
 
         .nota-table th {
             border: 1px solid #0c3378;
-            padding: 0.6rem 0.75rem;
+            padding: 0.6rem 0.5rem;
             text-align: left;
             color: #0c3378;
             font-weight: 800;
@@ -83,15 +89,17 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
             background-color: #ffffff;
+            word-wrap: break-word;
         }
 
         .nota-table td {
             border: 1px solid #0c3378;
-            padding: 0.55rem 0.75rem;
+            padding: 0.55rem 0.5rem;
             font-size: 0.9rem;
             color: #1e293b;
             height: 36px;
             vertical-align: middle;
+            word-wrap: break-word;
         }
 
         .nota-total-container {
@@ -149,6 +157,82 @@
             width: 100%;
         }
 
+        /* Mobile Responsive Styles */
+        @media (max-width: 576px) {
+            .nota-paper {
+                padding: 1.25rem 0.75rem;
+                border-radius: 6px;
+            }
+
+            .nota-title {
+                font-size: 1.35rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .nota-divider {
+                height: 2.5px;
+                margin-bottom: 0.85rem;
+            }
+
+            .nota-meta {
+                font-size: 0.825rem;
+                gap: 0.35rem;
+                margin-bottom: 0.85rem;
+            }
+
+            .meta-label {
+                width: 95px;
+            }
+
+            .meta-colon {
+                width: 12px;
+            }
+
+            .nota-table {
+                font-size: 0.75rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .nota-table th {
+                padding: 0.45rem 0.25rem;
+                font-size: 0.68rem;
+                letter-spacing: 0;
+            }
+
+            .nota-table td {
+                padding: 0.4rem 0.25rem;
+                font-size: 0.75rem;
+                height: 28px;
+            }
+
+            .nota-total-container {
+                margin-bottom: 2rem;
+                margin-top: 0.5rem;
+                padding-right: 0;
+            }
+
+            .nota-total-box {
+                gap: 0.75rem;
+            }
+
+            .total-label, .total-value {
+                font-size: 0.95rem;
+            }
+
+            .total-value {
+                min-width: 100px;
+            }
+
+            .nota-signatures {
+                margin-top: 1.25rem;
+            }
+
+            .sig-title {
+                font-size: 0.85rem;
+                margin-bottom: 3rem;
+            }
+        }
+
         /* Print styling */
         @media print {
             .no-print, header, nav, footer, .btn-action-container {
@@ -177,7 +261,7 @@
         }
     </style>
 
-    <div class="px-3 mt-3 mb-4">
+    <div class="px-2 px-sm-3 mt-3 mb-4">
         <div class="nota-paper receipt-box">
             <!-- Title -->
             <h1 class="nota-title">NOTA PENJUALAN</h1>
