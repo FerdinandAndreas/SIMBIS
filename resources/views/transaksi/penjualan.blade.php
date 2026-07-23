@@ -16,6 +16,12 @@
             </div>
 
             <div class="form-group">
+                <label class="form-label">Nama Pembeli / Pelanggan <span class="text-muted fw-normal">(Opsional)</span></label>
+                <input type="text" class="form-control @error('nama_pelanggan') is-invalid @enderror" id="nama_pelanggan" name="nama_pelanggan" value="{{ old('nama_pelanggan') }}" placeholder="Contoh: Bpk. Ahmad / Umum">
+                @error('nama_pelanggan') <div class="invalid-feedback">{{ $message }}</div> @enderror
+            </div>
+
+            <div class="form-group">
                 <label class="form-label">Pilih Produk <span class="text-muted fw-normal">(Opsional)</span></label>
                 <select class="form-select" id="product_select" name="product_id" onchange="onProductSelect(this)">
                     <option value="">-- Pilih dari Master Produk (Opsional) --</option>
