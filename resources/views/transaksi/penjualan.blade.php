@@ -17,7 +17,7 @@
 
             <div class="form-group">
                 <label class="form-label">Nama Pembeli / Pelanggan <span class="text-muted fw-normal">(Opsional)</span></label>
-                <input type="text" class="form-control @error('nama_pelanggan') is-invalid @enderror" id="nama_pelanggan" name="nama_pelanggan" value="{{ old('nama_pelanggan') }}" placeholder="Contoh: Bpk. Ahmad / Umum">
+                <input type="text" class="form-control @error('nama_pelanggan') is-invalid @enderror" id="nama_pelanggan" name="nama_pelanggan" value="{{ old('nama_pelanggan') }}">
                 @error('nama_pelanggan') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
@@ -35,7 +35,7 @@
 
             <div class="form-group">
                 <label class="form-label">Nama Barang</label>
-                <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" id="nama_barang" name="nama_barang" value="{{ old('nama_barang') }}" required placeholder="Contoh: Beras Premium 25kg">
+                <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" id="nama_barang" name="nama_barang" value="{{ old('nama_barang') }}" required>
                 @error('nama_barang') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
@@ -58,24 +58,10 @@
                 @error('harga_jual') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
-            <div class="form-group">
-                <label class="form-label">Uang Bayar (Rp)</label>
-                <input type="number" class="form-control @error('bayar') is-invalid @enderror" id="bayar" name="bayar" value="{{ old('bayar', 0) }}" min="0" required oninput="calcTotal()">
-                @error('bayar') <div class="invalid-feedback">{{ $message }}</div> @enderror
-            </div>
-
             <div class="summary-card mb-3">
-                <div class="summary-row">
-                    <span class="summary-label">Total Penjualan</span>
-                    <span class="summary-val text-dark fs-6" id="total_val">Rp 0</span>
-                </div>
-                <div class="summary-row">
-                    <span class="summary-label">Bayar</span>
-                    <span class="summary-val text-dark fs-6" id="bayar_val">Rp 0</span>
-                </div>
                 <div class="summary-row border-0">
-                    <span class="summary-label">Kembalian</span>
-                    <span class="summary-val text-profit fs-6 fw-bold" id="kembalian_val">Rp 0</span>
+                    <span class="summary-label">Total Penjualan</span>
+                    <span class="summary-val text-dark fs-6 fw-bold" id="total_val">Rp 0</span>
                 </div>
             </div>
 
@@ -145,14 +131,9 @@
         function calcTotal() {
             const qty = parseFloat(document.getElementById('jumlah').value) || 0;
             const price = parseFloat(document.getElementById('harga_jual').value) || 0;
-            const bayar = parseFloat(document.getElementById('bayar').value) || 0;
-
             const total = qty * price;
-            const kembalian = Math.max(0, bayar - total);
 
             document.getElementById('total_val').innerText = 'Rp ' + total.toLocaleString('id-ID');
-            document.getElementById('bayar_val').innerText = 'Rp ' + bayar.toLocaleString('id-ID');
-            document.getElementById('kembalian_val').innerText = 'Rp ' + kembalian.toLocaleString('id-ID');
         }
 
         document.addEventListener('DOMContentLoaded', calcTotal);

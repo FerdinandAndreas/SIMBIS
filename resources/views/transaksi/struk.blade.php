@@ -196,9 +196,9 @@
                     <span class="meta-value">{{ $penjualan->nama_pelanggan ? $penjualan->nama_pelanggan : '' }}</span>
                 </div>
                 <div class="meta-row">
-                    <span class="meta-label">Tanggal & waktu</span>
+                    <span class="meta-label">Tanggal</span>
                     <span class="meta-colon">:</span>
-                    <span class="meta-value">{{ \Carbon\Carbon::parse($penjualan->tanggal)->format('d/m/Y') }} {{ $penjualan->created_at ? $penjualan->created_at->format('H:i') : '' }}</span>
+                    <span class="meta-value">{{ \Carbon\Carbon::parse($penjualan->tanggal)->format('d/m/Y') }}</span>
                 </div>
             </div>
             <div class="nota-divider"></div>

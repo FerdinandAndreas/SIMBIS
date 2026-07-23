@@ -104,13 +104,14 @@ class TransactionController extends Controller
             'jumlah'          => 'required|integer|min:1',
             'satuan'          => 'required|string|max:50',
             'harga_jual'      => 'required|integer|min:0',
-            'bayar'           => 'required|integer|min:0',
+            'bayar'           => 'nullable|integer|min:0',
             'nama_pelanggan'  => 'nullable|string|max:255',
             'keterangan'      => 'nullable|string',
         ]);
 
         $validated['total']       = $validated['jumlah'] * $validated['harga_jual'];
-        $validated['kembalian']   = $validated['bayar'] - $validated['total'];
+        $validated['bayar']       = $request->filled('bayar') ? (int) $request->bayar : $validated['total'];
+        $validated['kembalian']   = max(0, $validated['bayar'] - $validated['total']);
         $validated['user_id']     = Auth::id();
         $validated['no_invoice']  = 'INV/' . Carbon::now()->format('Y/m') . '/' . strtoupper(Str::random(6));
 
